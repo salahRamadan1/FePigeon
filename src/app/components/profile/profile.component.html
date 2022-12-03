@@ -1,0 +1,200 @@
+<div class=" container  my-5 pt-5 ">
+    <!-- setting -->
+    <i class="fa-solid fa-gear setting shadow-lg     addAndSetting" data-bs-toggle="modal"
+        data-bs-target="#settings"></i>
+    <!-- add  -->
+    <i class="fa-solid fa-plus shadow-lg add addAndSetting" data-bs-toggle="modal" data-bs-target="#add"></i>
+    <!-- userInfo -->
+    <div class=" text-center">
+        <!-- <img class="imgProf"  id="imgApi" [src]="   imgSrc+  user.img        " alt=""> -->
+        <img class="imgProf rounded-5" id="profileStatic"
+            src="../../../assets/546624_773 logo7651_1538001_96cfc870_image.jpg" alt="">
+        <h3>{{userInfo.name1 |uppercase}} {{userInfo.name2 |uppercase}}</h3>
+        <p>PHONE: {{userInfo.phone}}</p>
+        <div class=" container">
+            <div class=" row justify-content-center">
+                <div class=" col-md-10 mt-5  ">
+                    <div *ngIf="errGetPost" class=" item">
+                        <h2 class="errGetPost">{{errGetPost |uppercase}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class=" row g-5 justify-content-center">
+                <!-- ************************** -->
+          
+     
+               
+                <!-- ************************** -->
+
+                <!--  img for user -->
+                <div *ngFor="let post of data" class="   col-md-7    shadow-lg rounded-5 ">
+                    <div class=" float-start mt-3  ">
+                        <div class="dropdown">
+
+                            <i class="fa-solid fa-download iconDown" data-bs-toggle="dropdown"
+                                aria-expanded="false"></i>
+                            <!--  update and delete post -->
+                            <ul class="dropdown-menu">
+                                <li (click)="deletePost(post._id)"><a class="dropdown-item">delete </a></li>
+                                <li data-bs-toggle="modal" data-bs-target="#updatePost"><a class="dropdown-item"
+                                        (click)="getIdPost(post._id)">update</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class=" clearfix"></div>
+
+                    <div class=" item  ">
+                        <!--  imgUser and title for owner post -->
+                        <div class="   mt-1">
+
+                            <h6 class=" mt-1 me-3">{{post.userId.firstName | uppercase}} </h6>
+                        </div>
+                        <hr>
+                        <!-- setting sold -->
+                        <div class=" float-start">
+                            <div class="dropdown">
+                                <i class="fa-solid fa-download iconDown" data-bs-toggle="dropdown"
+                                    aria-expanded="false"></i>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <p class="dropdown-item" id="sold" (click)="sold(post._id)" name="Sold">Sold</p>
+                                    </li>
+                                    <li>
+                                        <p class="dropdown-item" id="unSold" (click)="unSold(post._id)" name="UnSold">
+                                            UnSold</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class=" clearfix"></div>
+
+                        <div class=" float-end">
+                            <p class="bg-danger  p-2 rounded-5 fw-bold shadow-lg">{{post.sold}} </p>
+                        </div>
+                        <div class=" clearfix"></div>
+                        <!--  title and img post for user -->
+                        <div>
+                            <h3 class=" ms-2 text-start"> TITLE: <span class=" text-danger">{{post.title}}</span>  </h3>
+                            <h3 class=" ms-2 text-start  "> PRICE: <span class=" text-danger">{{post.price}}</span>
+                            </h3>
+
+                            <img [src]=" 'http://localhost:3000/postPhoto/' +post.image"
+                                class=" rounded-5 w-100 me-3 imgPOst" alt="">
+                        </div>
+                        <div class=" d-flex justify-content-center justify-content-evenly align-items-center mt-3">
+                            <div class="d-flex">
+                                <!-- <i class="fa-solid fa-heart love"></i> -->
+                                <h5 class="comments"> LIKED <span class=" ms-2 mb-1">{{post.count}}</span></h5>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+<!-- ModalSettings -->
+<div class="modal fade" id="settings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formSettingImg" (ngSubmit)="changeProfilePic()">
+                    <label for="imgSe" class=" btn btn-info w-100 mt-2"> choose your profile picture</label>
+                    <input type="file" (change)="choosePhoto($event)" id="imgSe" class=" form-control d-none">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Change</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- model add -->
+<div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class=" item">
+                    <form>
+                        <!-- title -->
+                        <label for="title" class=" fw-bolder">TITLE</label>
+                        <p *ngIf="errPost" class=" text-danger">{{errPost}}</p>
+                        <input type="text" id="title" class="form-control">
+                        <!-- price -->
+                        <label for="price" class=" fw-bold">PRICE</label>
+                        <input type="number" id="price" class=" form-control">
+                        <!-- img -->
+                        <label for="img" class=" btn btn-outline-danger mt-3 w-100">Choose img</label>
+                        <input type="file" id="img" (change)="choosePhoto($event)" class=" d-none ">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addPost()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ModalUpdatePost -->
+<div class="modal fade" id="updatePost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class=" item">
+                    <form [formGroup]="formUpdatePost" (ngSubmit)="updatePost()">
+                        <!-- title -->
+                        <label for="titleUpdate" class=" fw-bolder">TITLE</label>
+
+                        <p *ngIf="errPost" class=" text-danger">{{errPost}}</p>
+                        <input type="text" formControlName="title" id="titleUpdate" class="form-control">
+
+                        <!-- img -->
+                        <label for="img" class=" btn btn-outline-danger mt-3 w-100">Choose img</label>
+                        <input type="file" formControlName="image" id="img" (change)="choosePhoto($event)"
+                            class=" d-none ">
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class=" container mb-1 body shadow-lg rounded-3">
+    <div class="loop-wrapper">
+        <div class="mountain"></div>
+        <div class="hill"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="rock"></div>
+        <div class="truck"></div>
+        <div class="wheels"></div>
+      </div> 
+  </div>

@@ -1,0 +1,73 @@
+<div class=" container mt-5 pt-5 position-relative">
+    <div id="errPar" class=" err">
+        <p class=" text-white  bg-danger  p-2 rounded-3">email or password incorrect</p>
+    </div>
+    <div class=" row  text-center align-items-center">
+        <div class=" col-md-6">
+            <h3>welcome to our family</h3>
+            <br>
+            <img src="../../../assets/pigeon-registerappliances-logo-A47DD13529-seeklogo.com.png" alt="">
+            <h3> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, atque!</h3>
+        </div>
+        <div class=" col-md-6">
+            <div class=" form">
+                <form [formGroup]="loginForm" (ngSubmit)="loginFun()">
+                    <div class=" item">
+
+                        <div class=" email mb-2">
+                            <!-- <label for="last_name">email</label> -->
+                            <input type="email" formControlName="email" id="email" class=" form-control"
+                                placeholder="email">
+                            <div class=" text-danger"
+                                *ngIf="loginForm.get('email')?.errors &&loginForm.get('email')?.touched">
+                                <p *ngIf="loginForm.get('email')?.errors?.['required']">email is required</p>
+                                <p *ngIf="loginForm.get('email')?.errors?.['email']">write the correct email</p>
+                            </div>
+                        </div>
+                        <div class=" password mb-2">
+                            <!-- <label for="last_name">password</label> -->
+                            <input type="password" formControlName="password" id="password" class=" form-control"
+                                placeholder="password">
+                            <div class=" text-danger"
+                                *ngIf="loginForm.get('password')?.errors &&loginForm.get('password')?.touched">
+                                <p *ngIf="loginForm.get('password')?.errors?.['required']">password is required</p>
+                                <p *ngIf="loginForm.get('password')?.errors?.['maxlength']">password is maxlength 15</p>
+                                <p *ngIf="loginForm.get('password')?.errors?.['minlength']">password is minlength 6 </p>
+                            </div>
+                        </div>
+                        <button type="submit" [disabled]="loginForm.invalid" class=" btn btn-outline-danger w-100 mb-2">
+                            login</button>
+                    </div>
+                </form>
+                    <div *ngIf="conFirm" class=" alert alert-info">
+                          <p>{{conFirm |uppercase}}</p>
+                    </div>
+
+
+
+            </div>
+
+
+
+        </div>
+        <div class=" body mt-5">
+            <div class="textContainer">
+                <h1 class="d_f bouncingAnim">
+                      <span>P</span>
+                      <span>I</span>
+                      <span>G</span>
+                      <span>E</span>
+                      <span>O</span>
+                    
+                      <span>N</span>
+                     
+                      <!-- Training -->
+                  </h1>
+             </div>
+        </div>
+    </div>
+    
+</div>
+
+
+

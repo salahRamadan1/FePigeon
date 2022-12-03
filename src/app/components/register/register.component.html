@@ -1,0 +1,103 @@
+<div class=" container mt-5 pt-5 position-relative">
+
+
+    <div  id="errPar"class=" err">
+        <p  class=" text-white  bg-danger  p-2 rounded-3"> email already exits</p>
+    </div>
+    <div class=" row  text-center mt-5">
+        <div class=" col-md-6">
+            <h3>welcome to our family</h3>
+            <br>
+            <img src="../../../assets/pigeon-registerappliances-logo-A47DD13529-seeklogo.com.png" alt="">
+            <h3> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, atque!</h3>
+        </div>
+        <div class="  col-md-6">
+
+            <div class=" form">
+                <form [formGroup]="registerForm" (ngSubmit)="registerFun()">
+                    <div class=" item">
+                        <div class=" first name mb-2">
+                            <!-- <label for="first_name">first name</label> -->
+                            <input type="text" formControlName="firstName" id="first_name" class=" form-control"
+                                placeholder="first name">
+                                <div class=" text-danger text-start"
+                                *ngIf="registerForm.get('firstName')?.errors &&registerForm.get('firstName')?.touched">
+                                <p *ngIf="registerForm.get('firstName')?.errors?.['required']">first name is required</p>
+                                <p *ngIf="registerForm.get('firstName')?.errors?.['maxlength']">first name is maxlength 16
+                                </p>
+                                <p *ngIf="registerForm.get('firstName')?.errors?.['minlength']">first name is minlength 2
+                                </p>
+                            </div>
+                        </div>
+                        <div class=" last_name mb-2">
+                            <!-- <label for="last_name">last name</label> -->
+                            <input type="text" formControlName="lastName" id="last_name" class=" form-control"
+                                placeholder="last name">
+                                <div class=" text-start text-danger"
+                                *ngIf="registerForm.get('lastName')?.errors &&registerForm.get('lastName')?.touched">
+                                <p *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required</p>
+                                <p *ngIf="registerForm.get('lastName')?.errors?.['maxlength']">Last name is maxlength 16
+                                </p>
+                                <p *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Last name is minlength 2
+                                </p>
+                            </div>
+                        </div>
+                        <div class=" email mb-2">
+                            <!-- <label for="last_name">email</label> -->
+                            <input type="email" formControlName="email" id="email" class=" form-control"
+                                placeholder="email">
+                                <div class=" text-danger"
+                                *ngIf="registerForm.get('email')?.errors &&registerForm.get('email')?.touched">
+                                <p *ngIf="registerForm.get('email')?.errors?.['required']">email is required</p>
+                                <p *ngIf="registerForm.get('email')?.errors?.['email']">write the correct email</p>
+                            </div>
+                        </div>
+                        <div class=" password mb-2">
+                            <!-- <label for="last_name">password</label> -->
+                            <input type="password" formControlName="password" id="password" class=" form-control"
+                                placeholder="password">
+                                <div class=" text-danger"
+                                *ngIf="registerForm.get('password')?.errors &&registerForm.get('password')?.touched">
+                                <p *ngIf="registerForm.get('password')?.errors?.['required']">password is required</p>
+                                <p *ngIf="registerForm.get('password')?.errors?.['maxlength']">password is maxlength 15</p>
+                                <p *ngIf="registerForm.get('password')?.errors?.['minlength']">password is minlength 6 </p>
+                            </div>
+                        </div>
+                        <div class=" phone mb-2">
+                            <!-- <label for="last_name">phone</label> -->
+                            <input type="phone" formControlName="Phone" id="phone" class=" form-control"
+                                placeholder="phone">
+                                <div class=" text-danger"
+                                *ngIf="registerForm.get('Phone')?.errors &&registerForm.get('Phone')?.touched">
+                                <p *ngIf="registerForm.get('Phone')?.errors?.['required']">Phone is required</p>
+                                <p *ngIf="registerForm.get('Phone')?.errors?.['maxlength']">Phone is maxlength 11</p>                               
+                            </div>
+                        </div>
+
+                        <button type="submit" [disabled]="registerForm.invalid"
+                            class=" btn btn-outline-danger w-100 mb-2"> Register</button>
+                    </div>
+                </form>
+
+            </div>
+
+
+
+        </div>
+        <div class=" body mt-5 ">
+            <div class="textContainer">
+                <h1 class="d_f bouncingAnim">
+                      <span>P</span>
+                      <span>I</span>
+                      <span>G</span>
+                      <span>E</span>
+                      <span>O</span>
+                    
+                      <span>N</span>
+                     
+                      <!-- Training -->
+                  </h1>
+             </div>
+        </div>
+    </div>
+</div>

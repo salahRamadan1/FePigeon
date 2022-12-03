@@ -1,0 +1,129 @@
+<div class="  container mt-5 pt-3  ">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class="birds">
+                <div class="birds__hatdove">
+                    <div class="birds__hatdove-shadow"></div>
+                    <div class="birds__hatdove-head">
+                        <div class="birds__hatdove-hat"></div>
+                        <div class="birds__hatdove-forehead"></div>
+                        <div class="birds__hatdove-eye"></div>
+                        <div class="birds__hatdove-eye"></div>
+                        <div class="birds__hatdove-beak"></div>
+                    </div>
+                    <div class="birds__hatdove-backwing"></div>
+                    <div class="birds__circles-1"></div>
+                    <div class="birds__hatdove-backleg">
+                        <div class="birds__curly"></div>
+                    </div>
+                    <div class="birds__hatdove-body"></div>
+                    <div class="birds__hatdove-frontleg">
+                        <div class="birds__curly"></div>
+                    </div>
+                    <div class="birds__hatdove-frontwing"></div>
+                    <div class="birds__circles-2"></div>
+                    <div class="birds__hatdove-frontwing-finger"></div>
+                    <div class="birds__hatdove-frontwing-finger"></div>
+                    <div class="birds__hatdove-frontwing-finger"></div>
+                </div>
+                <div class="birds__table">
+                    <div class="birds__table-shadow"></div>
+                </div>
+                <div class="birds__laptop"></div>
+                <div class="birds__laptop">
+                    <div class="birds__monitor">
+                        <div class="birds__code"></div>
+                    </div>
+                </div>
+                <div class="birds__coffee"></div>
+                <div class="birds__feather"></div>
+                <div class="birds__feather"></div>
+                <div class="birds__rundove-shadow"></div>
+                <div class="birds__rundove">
+                    <div class="birds__rundove-backwing">
+                        <div class="birds__finger"></div>
+                        <div class="birds__finger"></div>
+                        <div class="birds__finger"></div>
+                        <div class="birds__circles"></div>
+                    </div>
+                    <div class="birds__rundove-head">
+                        <div class="birds__rundove-eye"></div>
+                        <div class="birds__rundove-eye"></div>
+                        <div class="birds__rundove-beak"></div>
+                    </div>
+                    <div class="birds__rundove-backleg">
+                        <div class="birds__curly"></div>
+                    </div>
+                    <div class="birds__rundove-body"></div>
+                    <div class="birds__rundove-frontleg">
+                        <div class="birds__curly"></div>
+                    </div>
+                    <div class="birds__rundove-frontwing">
+                        <div class="birds__finger"></div>
+                        <div class="birds__finger"></div>
+                        <div class="birds__finger"></div>
+                        <div class="birds__circles"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+           <div class=" bg-danger text-white text-center rounded-3 p-2">
+            <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis quod odio at dignissimos neque nemo dolores? Voluptas deleniti praesentium facilis!</h4>
+           </div>
+    <div class=" row justify-content-center">
+        <div class=" col-md-10 mt-5  ">
+            <div *ngIf="noyFoundData" class=" item">
+                <h2 class="noyFoundData">{{noyFoundData}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" container">
+    <div class=" row g-5 justify-content-center mb-5">
+        <div *ngFor="let post of data" class="   col-md-7    shadow-lg rounded-5 ">
+            <div class=" item  ">
+                <!--  imgUser and title for owner post -->
+                <div class=" d  mt-1">
+                    <img [src]=" imgSrcProFile + post.userId.profile_Pic " id="profileStatic" class=" rounded-5 img me-3" alt="">
+                    <h6 class=" ms-2">{{post.userId.firstName}} </h6>
+                    <p class="  ">PHONE: {{post.userId.Phone}}</p>
+                    <div class=" clearfix"></div>
+                    
+                </div>
+                <hr>
+                <!--  title and img post for user -->
+                <div>
+                    
+                    <h3 class=" ms-2 text-start"> TITLE: <span class=" text-danger">{{post.title}}</span>  </h3>
+
+                            <h3 class=" ms-2 text-start  "> PRICE: <span class=" text-danger">{{post.price}}</span>  </h3>
+                    
+                
+                    <img [src]="'http://localhost:3000/postPhoto/'+ post.image" class=" rounded-5 w-100 me-3 imgPOst" alt="">
+                </div>
+                <hr>
+                <!-- like and comments -->
+             
+                    <div class="d-flex justify-content-between">
+                        <!-- <i class="fa-solid fa-heart love"></i> -->
+                        <h5 (click)="lovePostFromUser(post._id)" class="comments d-flex align-items-center"> LIKE <span
+                                class=" ms-2 mb-1">{{post.count}}</span>
+                                <p id="liked" class=" h6 mt-2 ms-1 liked"> liked</p>
+                                <p id="unLiked" class=" h6 mt-2 ms-1 liked"> unLiked</p></h5>
+                       
+                         
+                            <p   class="bg-danger  ms-5 p-2 rounded-5 fw-bold shadow-lg">{{post.sold}} </p>
+                        
+                          
+                 
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
